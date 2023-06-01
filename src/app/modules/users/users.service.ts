@@ -1,12 +1,12 @@
 import config from '../../../config'
 import { IUser } from './users.interface'
 import { User } from './users.model'
-import { generatedUserId } from './users.utils'
+import { generateUserId } from './users.utils'
 
 const createUser = async (user: IUser): Promise<IUser | null> => {
   // 1.need incremental auto generated id
 
-  const newGeneratedId = await generatedUserId()
+  const newGeneratedId = await generateUserId()
   user.id = newGeneratedId
   // 2.default password
   if (!user.password) {

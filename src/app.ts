@@ -11,7 +11,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 //application routes
-app.use('/api/v1/users/', usersRouter)
+app.use('/api/v1/users', usersRouter)
+// app.post('/create-user', usersRouter)
 
 //testing
 app.get('/', (req: Request, res: Response) => {
