@@ -1,13 +1,14 @@
 import config from '../../../config'
 import { IUser } from './users.interface'
 import { User } from './users.model'
+import { generateUserId } from './users.utils'
 
-const createdUser = async (user: IUser): Promise<IUser | null> => {
-  /*
-1.need incremental auto generated id
-2.default password
-*/
+const createUser = async (user: IUser): Promise<IUser | null> => {
+  // 1.need incremental auto generated id
 
+  const newGeneratedId = await generateUserId()
+  user.id = newGeneratedId
+  // 2.default password
   if (!user.password) {
     user.password = config.default_user_pass as string
   }
@@ -20,5 +21,5 @@ const createdUser = async (user: IUser): Promise<IUser | null> => {
 }
 
 export default {
-  createdUser,
+  createUser,
 }
