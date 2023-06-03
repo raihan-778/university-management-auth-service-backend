@@ -11,16 +11,17 @@ const myFormat = printf(({ level, message, label, timestamp }) => {
   const hours = date.getHours()
   const minutes = date.getMinutes()
   const seconds = date.getSeconds()
-  return ` ${date.toString()} ${hours}:${minutes}:${seconds} } [${label}] ${level}: ${message} `
+  return ` ${date.toDateString()} ${hours}:${minutes}:${seconds}  [${label}] ${level}: ${message} `
 })
 
 const logger = createLogger({
   level: 'info',
   format: combine(
-    label({ label: 'PH!' }),
     timestamp(),
-
     myFormat,
+    // customTimestamp({ format: true }),
+    label({ label: 'PH!' }),
+
     prettyPrint()
   ),
   transports: [
@@ -31,7 +32,8 @@ const logger = createLogger({
         process.cwd(),
         'logs',
         'winston',
-        'success-%DATE%.log'
+        'successes',
+        'phu-%DATE%-success.log'
       ),
       datePattern: 'YYYY-MM-DD-HH',
       zippedArchive: true,
@@ -41,18 +43,23 @@ const logger = createLogger({
   ],
 })
 const errorLogger = createLogger({
-  level: 'info',
+  level: 'error',
   format: combine(
-    label({ label: 'PH!' }),
     timestamp(),
+    label({ label: 'PH!' }),
     myFormat,
     prettyPrint()
   ),
   transports: [
     new transports.Console(),
-
     new DailyRotateFile({
-      filename: path.join(process.cwd(), 'logs', 'winston', 'error-%DATE%.log'),
+      filename: path.join(
+        process.cwd(),
+        'logs',
+        'winston',
+        'errors',
+        'phu-%DATE%-error.log'
+      ), // by using this "path.join(proccess.cwd())" we will creating working directory here "logs" "winston" "errors"  will create folders here first folder will be logs and winstone folder will create inside logs folder ,error will create inside winstone & last error.log file will create inside errors folder autometicaly when any error will create.
       datePattern: 'YYYY-MM-DD-HH',
       zippedArchive: true,
       maxSize: '20m',
@@ -64,5 +71,5 @@ const errorLogger = createLogger({
 export { logger, errorLogger }
 
 //logs/winston/
-//success.log
-//error.log
+//succeses/success.log
+//errors/error.log
