@@ -19,8 +19,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint:check": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "lint:fix": "eslint . --fix",
-    "prettier:check": "prettier --ignore-path .gitignore --write . \"**/*.+(js|ts|json)\"",
+    "prettier:check": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
+    "prettier:check1": "prettier --ignore-path .gitignore --write . \"**/*.+(js|ts|json)\"",
     "prettier:fix": "prettier --write .",
+    "lint:prettier1": "yarn lint:check && prettier:check",
     "lint:prettier": "yarn lint:check",
     "lint:prettier-option-two": "yarn lint:check && prettier:check"
   },
