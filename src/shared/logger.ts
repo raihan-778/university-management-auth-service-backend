@@ -11,16 +11,16 @@ const myFormat = printf(({ level, message, label, timestamp }) => {
   const hours = date.getHours()
   const minutes = date.getMinutes()
   const seconds = date.getSeconds()
-  return ` ${date.toDateString()} ${hours}:${minutes}:${seconds}  [${label}] ${level}: ${message} `
+  return ` ${date.toDateString()} ${hours}:${minutes}:${seconds} [${label}] ${level}: ${message} `
 })
 
 const logger = createLogger({
   level: 'info',
   format: combine(
     timestamp(),
-    myFormat,
+    label({ label: 'PH!' }),
+    myFormat
     // customTimestamp({ format: true }),
-    label({ label: 'PH!' })
   ),
   transports: [
     new transports.Console(),

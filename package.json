@@ -25,7 +25,7 @@
     "lint:prettier-option-two": "yarn lint:check && prettier:check"
   },
   "lint-staged": {
-    "src/**/*.ts": "yarn lint:prettier"
+    "src/**/*.ts": "yarn lint:prettier "
   },
   "description": "",
   "dependencies": {
