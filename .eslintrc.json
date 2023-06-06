@@ -4,7 +4,7 @@
     "es2021": true,
     "node": true
   },
-  " globals": {
+  "globals": {
     "process": "readonly"
   },
   "extends": [
@@ -21,7 +21,7 @@
   "plugins": ["@typescript-eslint"],
   "rules": {
     "no-unused-vars": "error",
-    "no-console": "error",
+    "no-console": "warn",
     "no-undef": "error",
 
     "no-unused-expressions": "error",

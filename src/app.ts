@@ -16,10 +16,10 @@ app.use('/api/v1/users', UserRoutes)
 app.post('/create-user', UserRoutes)
 
 //testing
-// app.get('/', (req: Request, res: Response, next: NextFunction) => {
+// app.get('/', async (req: Request, res: Response, next: NextFunction) => {
 //   // res.send('Our University Management app is running perfectly ')
-//   throw new ApiError(400, 'ore Baba Error')
-//   //   throw new Error('ore Baba Error')
+//   // Promise.reject(new Error('Unhandeled promise rejection'))
+//   throw new Error('ore Baba Error')
 //   // next('Ore baba Error')
 // })
 
