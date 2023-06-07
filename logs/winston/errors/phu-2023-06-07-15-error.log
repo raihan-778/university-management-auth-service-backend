@@ -1,0 +1,12 @@
+ Wed Jun 07 2023 15:48:58 [PH!] error: Global error handler [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "role"
+    ],
+    "message": "role is required"
+  }
+] 
