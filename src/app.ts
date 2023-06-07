@@ -1,6 +1,7 @@
 import cors from 'cors'
-import express, { Application, Request, Response } from 'express'
-import usersRouter from './app/modules/users/users.router'
+import express, { Application } from 'express'
+import globalErrorHandler from './app/middleware/globalErrorHandler'
+import { UserRoutes } from './app/modules/users/user.router'
 
 const app: Application = express()
 
@@ -11,13 +12,20 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 //application routes
-app.use('/api/v1/users', usersRouter)
-// app.post('/create-user', usersRouter)
+app.use('/api/v1/users', UserRoutes)
+app.post('/create-user', UserRoutes)
 
 //testing
-app.get('/', (req: Request, res: Response) => {
-  res.send('Our University Management app is running perfectly ')
-})
+// app.get('/', async (req: Request, res: Response, next: NextFunction) => {
+//   // res.send('Our University Management app is running perfectly ')
+//   // Promise.reject(new Error('Unhandeled promise rejection'))
+//   throw new Error('ore Baba Error')
+//   // next('Ore baba Error')
+// })
+
+//global error handler
+app.use(globalErrorHandler)
+
 // console.log(process.env)
 
 export default app
