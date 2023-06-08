@@ -1,6 +1,7 @@
 import cors from 'cors';
 import express, { Application } from 'express';
 import globalErrorHandler from './app/middleware/globalErrorHandler';
+import { AcademicSemisterRoutes } from './app/modules/academicSemister/academicSemister.route';
 import { UserRoutes } from './app/modules/user/user.router';
 
 const app: Application = express();
@@ -14,6 +15,8 @@ app.use(express.urlencoded({ extended: true }));
 //application routes
 app.use('/api/v1/users', UserRoutes);
 app.post('/create-user', UserRoutes);
+app.use('/api/v1/academic-semister', AcademicSemisterRoutes);
+// app.use('/api/v1/academic-semister', AcademicSemisterRoutes);
 
 //testing
 // app.get('/', async (req: Request, res: Response, next: NextFunction) => {

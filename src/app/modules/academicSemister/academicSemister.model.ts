@@ -1,23 +1,13 @@
 import { Schema, model } from 'mongoose';
 import {
+  academicSemisterCode,
+  academicSemisterMonths,
+  academicSemisterTitles,
+} from './academicSemister.constant';
+import {
   AcademicSemisterModel,
   IAcademicSemister,
 } from './academicSemister.interface';
-
-const Month = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
 
 const academicSemisterSchema = new Schema<
   IAcademicSemister,
@@ -27,12 +17,12 @@ const academicSemisterSchema = new Schema<
     title: {
       type: String,
       required: true,
-      enum: ['Autumn', 'Summer', 'Fall'],
+      enum: academicSemisterTitles,
     },
     year: { type: Number, required: true },
-    code: { type: String, required: true, enum: ['01', '02', '03'] },
-    startMonth: { type: String, required: true, enum: Month },
-    endMonth: { type: String, required: true, enum: Month },
+    code: { type: String, required: true, enum: academicSemisterCode },
+    startMonth: { type: String, required: true, enum: academicSemisterMonths },
+    endMonth: { type: String, required: true, enum: academicSemisterMonths },
   },
   {
     timestamps: true,
