@@ -1,9 +1,21 @@
 import express from 'express';
 import { AcademicSemisterRoutes } from '../modules/academicSemister/academicSemister.route';
 import { UserRoutes } from '../modules/user/user.router';
-const router = express.Router();
+const routes = express.Router();
 
-router.use('/users/', UserRoutes);
-router.use('/academic-semister', AcademicSemisterRoutes);
+const moduleRoutes = [
+  {
+    path: '/users',
+    route: UserRoutes,
+  },
+  {
+    path: '/academic-semister',
+    route: AcademicSemisterRoutes,
+  },
+];
+moduleRoutes.forEach(route => routes.use(route.path, route.route)); // by using these "moduleRoute we can create all users route dynamically."
 
-export default router;
+// routes.use('/users/', UserRoutes);
+// routes.use('/academic-semister', AcademicSemisterRoutes);
+
+export default routes;

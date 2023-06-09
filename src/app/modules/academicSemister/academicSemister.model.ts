@@ -36,6 +36,7 @@ academicSemisterSchema.pre('save', async function (next) {
   //*** this pre hook must be used before create model.all kind of schema related task should be completed before creating model.Otherwise this pre hook will not work  */
   // here next is a function of mongoose. do not confused to think it a function of express.
   const isExist = await AcademicSemister.findOne({
+    // this code base is used for checking same semister & title
     title: this.title,
     year: this.year,
   });
@@ -52,20 +53,3 @@ export const AcademicSemister = model<IAcademicSemister, AcademicSemisterModel>(
   'AcademicSemister',
   academicSemisterSchema
 );
-
-//here we will use mongoose pre-hook for checking any reapet semister within a single year.
-academicSemisterSchema.pre('save', async function (next) {
-  //*** this pre hook must be used before create model.all kind of schema related task should be completed before creating model.Otherwise this pre hook will not work  */
-  // here next is a function of mongoose. do not confused to think it a function of express.
-  const isExist = await AcademicSemister.findOne({
-    title: this.title,
-    year: this.year,
-  });
-  if (isExist) {
-    throw new ApiError(
-      httpStatus.CONFLICT,
-      'Academic Semister is already exists!'
-    );
-  }
-  next();
-});
