@@ -2,7 +2,7 @@ import cors from 'cors';
 import express, { Application, NextFunction, Request, Response } from 'express';
 import globalErrorHandler from './app/middleware/globalErrorHandler';
 import { UserRoutes } from './app/modules/user/user.router';
-import router from './app/routes';
+import routes from './app/routes';
 
 const app: Application = express();
 
@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 //application routes
 // app.use('/api/v1', UserRoutes);
 // app.use('/api/v1', AcademicSemisterRoutes);
-app.use('/api/v1', router);
+app.use('/api/v1', routes);
 app.post('/create-user', UserRoutes);
 
 //api for testing
