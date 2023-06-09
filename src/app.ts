@@ -1,8 +1,8 @@
 import cors from 'cors';
-import express, { Application } from 'express';
+import express, { Application, NextFunction, Request, Response } from 'express';
 import globalErrorHandler from './app/middleware/globalErrorHandler';
-import { AcademicSemisterRoutes } from './app/modules/academicSemister/academicSemister.route';
 import { UserRoutes } from './app/modules/user/user.router';
+import router from './app/routes';
 
 const app: Application = express();
 
@@ -13,18 +13,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //application routes
-app.use('/api/v1/users', UserRoutes);
+// app.use('/api/v1', UserRoutes);
+// app.use('/api/v1', AcademicSemisterRoutes);
+app.use('/api/v1', router);
 app.post('/create-user', UserRoutes);
-app.use('/api/v1/academic-semister', AcademicSemisterRoutes);
-// app.use('/api/v1/academic-semister', AcademicSemisterRoutes);
 
-//testing
-// app.get('/', async (req: Request, res: Response, next: NextFunction) => {
-//   res.send('Our University Management app is running perfectly ');
-//   // Promise.reject(new Error('Unhandeled promise rejection'))
-//   // throw new Error('ore Baba Error')
-//   // next('Ore baba Error')
-// });
+//api for testing
+app.get('/', async (req: Request, res: Response, next: NextFunction) => {
+  res.send('Our University Management app is running perfectly ');
+  // Promise.reject(new Error('Unhandeled promise rejection'))
+  // throw new Error('ore Baba Error')
+  // next('Ore baba Error')
+  next();
+});
 
 //global error handler
 app.use(globalErrorHandler);
