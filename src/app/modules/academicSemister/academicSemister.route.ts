@@ -8,7 +8,7 @@ const router = express.Router();
 router.post(
   '/create-semister',
   validateRequest(AcademicSemisterValidation.createAcademicSemisterZodSchema),
-  AcademicSemisterController.createSemister
+  AcademicSemisterController.createAcademicSemister
 );
 
 export const AcademicSemisterRoutes = router;
