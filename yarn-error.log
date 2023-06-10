@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Computer Importer\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add http-status
+  C:\Program Files\nodejs\node.exe C:\Users\Computer Importer\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js upgrade
 
 PATH: 
   C:\Program Files\PowerShell\7;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python311\Scripts\;C:\Python311\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\PowerShell\7\;%NVM_HOME%;%NVM_SYMLINK%;C:\Users\Computer Importer\AppData\Local\pnpm;C:\Users\Computer Importer\AppData\Local\Microsoft\WindowsApps;C:\Users\Computer Importer\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Computer Importer\AppData\Roaming\npm;C:\Users\Computer Importer\AppData\Roaming\nvm;C:\Program Files\nodejs
@@ -61,6 +61,7 @@ npm manifest:
       "dotenv": "^16.1.1",
       "eslint": "^8.41.0",
       "express": "^4.18.2",
+      "http-status": "^1.6.2",
       "install": "^0.13.0",
       "jod": "^0.0.0",
       "mongoose": "^7.2.1",
@@ -1247,6 +1248,11 @@ Lockfile:
       setprototypeof "1.2.0"
       statuses "2.0.1"
       toidentifier "1.0.1"
+  
+  http-status@^1.6.2:
+    version "1.6.2"
+    resolved "https://registry.yarnpkg.com/http-status/-/http-status-1.6.2.tgz#6dc05188a9856d67d96e48e8b4fd645c719ce82a"
+    integrity sha512-oUExvfNckrpTpDazph7kNG8sQi5au3BeTo0idaZFXEhTaJKu7GNJCLHI0rYY2wljm548MSTM+Ljj/c6anqu2zQ==
   
   human-signals@^4.3.0:
     version "4.3.1"

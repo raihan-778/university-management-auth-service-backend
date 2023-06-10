@@ -1,9 +1,11 @@
-import httpStatus from 'http-status';
-import catchAsync from '../../../shared/catchAsync';
-import sendResponse from '../../../shared/sendResponse';
-import { AcademicSemisterService } from './academicSemister.service';
 import { NextFunction, Request, Response } from 'express';
+import httpStatus from 'http-status';
+import { paginationFields } from '../../../constantFields/paginationConstants';
+import catchAsync from '../../../shared/catchAsync';
+import pick from '../../../shared/pick';
+import sendResponse from '../../../shared/sendResponse';
 import { IAcademicSemister } from './academicSemister.interface';
+import { AcademicSemisterService } from './academicSemister.service';
 
 const createAcademicSemister = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -25,21 +27,17 @@ const createAcademicSemister = catchAsync(
 
 const getAllSemisters = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    // const paginationOptions = {
-    //   page: Number(req.query.page),
-    //   limit: Number(req.query.limit),
-    //   sortBy: req.query.sortBy,
-    //   sortOrder: req.query.sortOrder,
-    // };
-    // console.log(paginationOptions);
-    // const result = await AcademicSemisterService.getAllSemisters(
-    //   paginationOptions
-    // );
-    sendResponse<IAcademicSemister>(res, {
+    const paginationOptions = pick(req.query, paginationFields);
+
+    const result = await AcademicSemisterService.getAllSemisters(
+      paginationOptions
+    );
+    sendResponse<IAcademicSemister[]>(res, {
       statusCode: httpStatus.OK,
       success: true,
       message: 'Academic Semister Retrived Successfully',
-      // data: result,
+      meta: result.meta,
+      data: result.data,
     });
     next();
   }

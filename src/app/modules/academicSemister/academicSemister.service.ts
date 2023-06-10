@@ -1,9 +1,10 @@
 import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
+import { IGenericResponse } from '../../../interfaces/common';
+import { IPaginationOptions } from './../../../interfaces/pagination';
 import { academicSemisterTitleCodeMapper } from './academicSemister.constant';
 import { IAcademicSemister } from './academicSemister.interface';
 import { AcademicSemister } from './academicSemister.model';
-// import { IPaginationOptions } from '../../../interfaces/pagination';
 
 const createSemister = async (payload: IAcademicSemister) => {
   if (academicSemisterTitleCodeMapper[payload.title] !== payload.code) {
@@ -16,9 +17,26 @@ const createSemister = async (payload: IAcademicSemister) => {
   return result;
 };
 
-// const getAllSemisters = (paginationOptions): IPaginationOptions => {};
+const getAllSemisters = async (
+  paginationOptions: IPaginationOptions
+): Promise<IGenericResponse<IAcademicSemister[]>> => {
+  const { page = 1, limit = 10 } = paginationOptions;
+  const skip = (page - 1) * limit;
+  const result = await AcademicSemister.find().sort().skip(skip).limit(limit);
+
+  const total = await AcademicSemister.countDocuments();
+
+  return {
+    meta: {
+      page,
+      limit,
+      total,
+    },
+    data: result,
+  };
+};
 
 export const AcademicSemisterService = {
   createSemister,
-  //   getAllSemisters,
+  getAllSemisters,
 };
