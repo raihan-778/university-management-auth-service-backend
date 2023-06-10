@@ -3,6 +3,7 @@ import ApiError from '../../../errors/ApiError';
 import { academicSemisterTitleCodeMapper } from './academicSemister.constant';
 import { IAcademicSemister } from './academicSemister.interface';
 import { AcademicSemister } from './academicSemister.model';
+// import { IPaginationOptions } from '../../../interfaces/pagination';
 
 const createSemister = async (payload: IAcademicSemister) => {
   if (academicSemisterTitleCodeMapper[payload.title] !== payload.code) {
@@ -15,6 +16,9 @@ const createSemister = async (payload: IAcademicSemister) => {
   return result;
 };
 
+// const getAllSemisters = (paginationOptions): IPaginationOptions => {};
+
 export const AcademicSemisterService = {
   createSemister,
+  //   getAllSemisters,
 };
