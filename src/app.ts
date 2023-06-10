@@ -1,5 +1,6 @@
 import cors from 'cors';
 import express, { Application, NextFunction, Request, Response } from 'express';
+import httpStatus from 'http-status';
 import globalErrorHandler from './app/middleware/globalErrorHandler';
 import { UserRoutes } from './app/modules/user/user.router';
 import routes from './app/routes';
@@ -29,6 +30,16 @@ app.get('/', async (req: Request, res: Response, next: NextFunction) => {
 
 //global error handler
 app.use(globalErrorHandler);
+
+//handle not found
+app.use((req, res, next) => {
+  res.status(httpStatus.NOT_FOUND).json({
+    success: false,
+    message: 'Not Found',
+    errorMessages: [{ path: req.originalUrl, message: 'Api not exist' }],
+  });
+  next();
+});
 
 // console.log(process.env)
 
