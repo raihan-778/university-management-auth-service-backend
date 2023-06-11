@@ -1,0 +1,6 @@
+ Sun Jun 11 2023 23:1:5 [PH!] error: Failed to connect database querySrv ETIMEOUT _mongodb._tcp.cluster0.safuyuz.mongodb.net 
+ Sun Jun 11 2023 23:10:0 [PH!] error: Failed to connect database querySrv EREFUSED _mongodb._tcp.cluster0.safuyuz.mongodb.net 
+ Sun Jun 11 2023 23:46:34 [PH!] error: Failed to connect database querySrv EREFUSED _mongodb._tcp.cluster0.safuyuz.mongodb.net 
+ Sun Jun 11 2023 23:47:26 [PH!] error: Failed to connect database querySrv EREFUSED _mongodb._tcp.cluster0.safuyuz.mongodb.net 
+ Sun Jun 11 2023 23:48:35 [PH!] error: Failed to connect database querySrv EREFUSED _mongodb._tcp.cluster0.safuyuz.mongodb.net 
+ Sun Jun 11 2023 23:49:21 [PH!] error: Failed to connect database querySrv EREFUSED _mongodb._tcp.cluster0.safuyuz.mongodb.net 
