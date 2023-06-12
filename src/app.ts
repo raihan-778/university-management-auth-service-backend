@@ -2,6 +2,7 @@ import cors from 'cors';
 import express, { Application, NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
 import globalErrorHandler from './app/middleware/globalErrorHandler';
+
 import { UserRoutes } from './app/modules/user/user.router';
 import routes from './app/routes';
 
@@ -18,6 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 // app.use('/api/v1', AcademicsemesterRoutes);
 app.use('/api/v1', routes);
 app.post('/create-user', UserRoutes);
+// app.get('/:id', AcademicSemesterRoutes);
+// app.get('/', AcademicSemesterRoutes);
 
 //api for testing
 app.get('/', async (req: Request, res: Response, next: NextFunction) => {
