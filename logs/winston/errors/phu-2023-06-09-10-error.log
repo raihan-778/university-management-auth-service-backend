@@ -50,5 +50,5 @@
     "message": "endMonth is required"
   }
 ] 
- Fri Jun 09 2023 10:18:49 [PH!] error: Global error handler Invalid Semister Code!! 
+ Fri Jun 09 2023 10:18:49 [PH!] error: Global error handler Invalid semester Code!! 
  Fri Jun 09 2023 10:54:53 [PH!] error: Failed to connect database connection 1 to 3.210.75.27:27017 closed 
