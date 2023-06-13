@@ -1,0 +1,5 @@
+ Mon Jun 12 2023 12:9:35 [PH!] error: Global error handler Cast to ObjectId failed for value "get-all-semesters" (type string) at path "_id" for model "AcademicSemester" 
+ Mon Jun 12 2023 12:38:21 [PH!] error: Global error handler Cast to ObjectId failed for value "6486ae4dbae375edc2e5c9f" (type string) at path "_id" for model "AcademicSemester" 
+ Mon Jun 12 2023 12:39:21 [PH!] error: Global error handler Cast to ObjectId failed for value "6486ae4dbae375edc2e5c9f" (type string) at path "_id" for model "AcademicSemester" 
+ Mon Jun 12 2023 12:39:49 [PH!] error: Global error handler Cast to ObjectId failed for value "6486ae4dbae375edc2e5c9f" (type string) at path "_id" for model "AcademicSemester" 
+ Mon Jun 12 2023 12:40:55 [PH!] error: Global error handler Cast to ObjectId failed for value "6486ae4dbae375edc2e5c9f" (type string) at path "_id" for model "AcademicSemester" 
