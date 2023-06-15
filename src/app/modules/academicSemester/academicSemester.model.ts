@@ -28,6 +28,9 @@ const academicSemesterSchema = new Schema<
   },
   {
     timestamps: true,
+    toJSON: {
+      virtuals: true, // here we use "toJSON:{virtuals:true}" the reason is mongodb always gives us a unique id as _id.by using virtuals:true we can see this _id as id virtualy but it will not saved in database.we just can see this _id as virtual id.
+    },
   }
 );
 
