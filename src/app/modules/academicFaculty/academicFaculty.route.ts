@@ -1,7 +1,7 @@
 import express from 'express';
-import { AcademicFacultyValidation } from './academicFaculty.validation';
-import { AcademicFacultyController } from './academicFaculty.controller';
 import validateRequest from '../../middleware/validateRequest';
+import { AcademicFacultyController } from './academicFaculty.controller';
+import { AcademicFacultyValidation } from './academicFaculty.validation';
 const router = express.Router();
 
 router.post(
@@ -9,4 +9,12 @@ router.post(
   validateRequest(AcademicFacultyValidation.createAcademicFacultyZodSchema),
   AcademicFacultyController.createFaculty
 );
+router.delete('/:id', AcademicFacultyController.deleteFaculty);
+router.patch(
+  '/:id',
+  validateRequest(AcademicFacultyValidation.updateAcademicFacultyZodSchema),
+  AcademicFacultyController.updateFaculty
+);
+router.get('/:id', AcademicFacultyController.getSingleFaculty);
+router.get('/', AcademicFacultyController.getAllFaculties);
 export const AcademicFacultyRoutes = router;
