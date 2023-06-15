@@ -117,9 +117,23 @@ const updateSemester = async (
   id: string,
   payload: Partial<IAcademicSemester>
 ): Promise<IAcademicSemester | null> => {
+  if (
+    payload.title &&
+    payload.code &&
+    academicSemesterTitleCodeMapper[payload.title] !== payload.code
+  ) {
+    // here payload.title will get the title name like "Summer",Autumn etc, which will make an index for academicSemesterTitleCodeMapper.
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Invalid Semester Code!!');
+  }
   const result = await AcademicSemester.findOneAndUpdate({ _id: id }, payload, {
     new: true, //here {new:true} is used to see the instant update document in response.If we do not use this our data will be updated but we can not see it instantly without refresh
   }); //here we avoid using updateOne may not use modelschema "save" validation middleware and bypass it .So that we have to use findOneAndUpdate.
+  return result;
+};
+const deleteSemester = async (
+  id: string
+): Promise<IAcademicSemester | null> => {
+  const result = await AcademicSemester.findByIdAndDelete(id);
   return result;
 };
 
@@ -128,4 +142,5 @@ export const AcademicSemesterService = {
   getAllSemesters,
   getSingleSemester,
   updateSemester,
+  deleteSemester,
 };
