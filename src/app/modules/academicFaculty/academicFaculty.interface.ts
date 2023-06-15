@@ -1,8 +1,8 @@
 import { Model } from 'mongoose';
 
 export type IAcademicFacultyTitle =
-  | 'Faculty Of Science & Engineering.'
-  | 'Faculty Of Business Adminstration'
+  | 'Faculty Of Science & Engineering'
+  | 'Faculty Of Business Administration'
   | 'Faculty Of Arts & Social Science';
 
 export type IAcademicFaculty = {
@@ -13,3 +13,7 @@ export type AcademicFacultyModel = Model<
   IAcademicFaculty,
   Record<string, unknown>
 >;
+
+export type IAcademicFacultyFilters = {
+  searchTerm?: string;
+};
