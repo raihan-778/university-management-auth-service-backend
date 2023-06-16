@@ -16,15 +16,14 @@
   },
   "scripts": {
     "start": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "lint:check": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "lint:fix": "eslint . --fix",
     "prettier:check": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "prettier:check1": "prettier --ignore-path .gitignore --write . \"**/*.+(js|ts|json)\"",
     "prettier:fix": "prettier --write .",
     "lint:prettier1": "yarn lint:check && prettier:check",
-    "lint:prettier": "yarn lint:check",
-    "lint:prettier-option-two": "yarn lint:check && prettier:check"
+    "lint:prettier": "yarn lint:check && yarn prettier:check",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "lint-staged": {
     "src/**/*.ts": "yarn lint:prettier "
@@ -38,8 +37,6 @@
     "eslint": "^8.42.0",
     "express": "^4.18.2",
     "http-status": "^1.6.2",
-    "install": "^0.13.0",
-    "jod": "^0.0.0",
     "mongoose": "^7.2.1",
     "winston": "^3.9.0",
     "winston-daily-rotate-file": "^4.7.1",
