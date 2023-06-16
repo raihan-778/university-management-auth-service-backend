@@ -5,6 +5,7 @@ import { ZodError } from 'zod';
 import config from '../../config';
 import ApiError from '../../errors/ApiError';
 import handleCastError from '../../errors/handleCastError';
+import TypeError from '../../errors/handleTypeError';
 import handleValidationError from '../../errors/handleValidationError';
 import handleZodError from '../../errors/handleZodError';
 import { IGenericErrorMessage } from '../../interfaces/error';
@@ -16,7 +17,7 @@ const globalErrorHandler: ErrorRequestHandler = (
   req,
   res
 ) => {
-  config.env === 'development'
+  config.env === 'development' && error
     ? console.log(`🚀global error handler`, error)
     : errorLogger.error(`Global error handler`, error);
 
@@ -51,6 +52,19 @@ const globalErrorHandler: ErrorRequestHandler = (
         ]
       : [];
   } else if (error instanceof Error) {
+    message = error?.message;
+    errorMessages = error?.message
+      ? [
+          {
+            path: '',
+            message: error?.message,
+          },
+        ]
+      : [];
+  } else if (
+    error instanceof TypeError &&
+    error.message.includes('res.status is not a function')
+  ) {
     message = error?.message;
     errorMessages = error?.message
       ? [

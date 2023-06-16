@@ -11,7 +11,7 @@ export type AcademicDepartmentModel = Model<
   Record<string, unknown>
 >;
 
-export type IAcademicDepartmentFilterRequest = {
+export type IAcademicDepartmentFilters = {
   searchTerm?: string;
   academicFaculty?: Types.ObjectId;
 };

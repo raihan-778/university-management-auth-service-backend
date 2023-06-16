@@ -1,6 +1,6 @@
 export const academicDepartmentSearchableFields = ['title', 'facultyId'];
-export const academicFacultyFilterableFields = [
+export const academicDepartmentFilterableFields = [
   'searchTerm',
   'title',
-  'facultyId',
+  'academicFaculty',
 ];
