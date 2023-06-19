@@ -4,8 +4,12 @@ import httpStatus from 'http-status';
 import globalErrorHandler from './app/middleware/globalErrorHandler';
 
 import { UserRoutes } from './app/modules/user/user.router';
+<<<<<<< HEAD
 
 import { generateFacultyId } from './app/modules/user/user.utils';
+=======
+// import { generateStudentId } from './app/modules/user/user.utils';
+>>>>>>> 0de55fb9b2246309a0950f96836772e125a6feaf
 import routes from './app/routes';
 
 const app: Application = express();
@@ -32,7 +36,12 @@ app.get('/', async (req: Request, res: Response, next: NextFunction) => {
   // next('Ore baba Error')
   next();
 });
-
+// const academicSemester = {
+//   code: '01',
+//   year: '2025',
+// };
+// const testId = generateStudentId(academicSemester);
+// console.log(testId);
 //global error handler
 app.use(globalErrorHandler);
 
