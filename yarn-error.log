@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Computer Importer\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js upgrade
+  C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\yarn\bin\yarn.js upgrade
 
 PATH: 
-  C:\Program Files\PowerShell\7;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python311\Scripts\;C:\Python311\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\PowerShell\7\;%NVM_HOME%;%NVM_SYMLINK%;C:\Users\Computer Importer\AppData\Local\pnpm;C:\Users\Computer Importer\AppData\Local\Microsoft\WindowsApps;C:\Users\Computer Importer\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Computer Importer\AppData\Roaming\npm;C:\Users\Computer Importer\AppData\Roaming\nvm;C:\Program Files\nodejs
+  C:\Program Files\PowerShell\7;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python311\Scripts\;C:\Python311\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\PowerShell\7\;C:\Users\Computer Importer\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\Computer Importer\AppData\Local\pnpm;C:\Users\Computer Importer\AppData\Local\Microsoft\WindowsApps;C:\Users\Computer Importer\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Computer Importer\AppData\Roaming\npm;C:\Users\Computer Importer\AppData\Roaming\nvm;C:\Program Files\nodejs
 
 Yarn version: 
   1.22.19
@@ -40,15 +40,14 @@ npm manifest:
     },
     "scripts": {
       "start": "ts-node-dev --respawn --transpile-only src/server.ts",
-      "test": "echo \"Error: no test specified\" && exit 1",
       "lint:check": "eslint --ignore-path .eslintignore --ext .js,.ts .",
       "lint:fix": "eslint . --fix",
       "prettier:check": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
       "prettier:check1": "prettier --ignore-path .gitignore --write . \"**/*.+(js|ts|json)\"",
       "prettier:fix": "prettier --write .",
       "lint:prettier1": "yarn lint:check && prettier:check",
-      "lint:prettier": "yarn lint:check",
-      "lint:prettier-option-two": "yarn lint:check && prettier:check"
+      "lint:prettier": "yarn lint:check && yarn prettier:check",
+      "test": "echo \"Error: no test specified\" && exit 1"
     },
     "lint-staged": {
       "src/**/*.ts": "yarn lint:prettier "
@@ -62,8 +61,6 @@ npm manifest:
       "eslint": "^8.42.0",
       "express": "^4.18.2",
       "http-status": "^1.6.2",
-      "install": "^0.13.0",
-      "jod": "^0.0.0",
       "mongoose": "^7.2.1",
       "winston": "^3.9.0",
       "winston-daily-rotate-file": "^4.7.1",
@@ -806,9 +803,9 @@ Lockfile:
       esutils "^2.0.2"
   
   dotenv@^16.1.1:
-    version "16.1.4"
-    resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.1.4.tgz#67ac1a10cd9c25f5ba604e4e08bc77c0ebe0ca8c"
-    integrity sha512-m55RtE8AsPeJBpOIFKihEmqUcoVncQIwo7x9U8ZwLEZw9ZpXboz2c+rvog+jUaJvVrZ5kBOeYQBX5+8Aa/OZQw==
+    version "16.2.0"
+    resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.2.0.tgz#d0c7110551d39c407f407d1afdce49c501c8e320"
+    integrity sha512-jcq2vR1DY1+QA+vH58RIrWLDZOifTGmyQJWzP9arDUbgZcySdzuBb1WvhWZzZtiXgfm+GW2pjBqStqlfpzq7wQ==
   
   dynamic-dedupe@^0.3.0:
     version "0.3.0"
@@ -1387,11 +1384,6 @@ Lockfile:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
     integrity sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==
-  
-  jod@^0.0.0:
-    version "0.0.0"
-    resolved "https://registry.yarnpkg.com/jod/-/jod-0.0.0.tgz#8eadff7620d346f638413e2fbbecfb9b9b287da4"
-    integrity sha512-9SiLEDpvAkXCiM1wiGIbTUeeOOy6Xia08VjltTIDXLqEdV9GGdx2MRhjPK9i/9MdYMlqCSHiAOhlM973DgezgA==
   
   js-yaml@^4.1.0:
     version "4.1.0"
@@ -1974,9 +1966,9 @@ Lockfile:
       sparse-bitfield "^3.0.3"
   
   semver@^7.3.7:
-    version "7.5.1"
-    resolved "https://registry.yarnpkg.com/semver/-/semver-7.5.1.tgz#c90c4d631cf74720e46b21c1d37ea07edfab91ec"
-    integrity sha512-Wvss5ivl8TMRZXXESstBA4uR5iXgEN/VC5/sOcuXdVLzcdkz4HWetIoRfG5gb5X+ij/G9rw9YoGn3QoQ8OCSpw==
+    version "7.5.2"
+    resolved "https://registry.yarnpkg.com/semver/-/semver-7.5.2.tgz#5b851e66d1be07c1cdaf37dfc856f543325a2beb"
+    integrity sha512-SoftuTROv/cRjCze/scjGyiDtcUyxw1rgYQSZY7XTmtR5hX+dm76iDbTH8TkLPHCQmlbQVSSbNZCPM2hb0knnQ==
     dependencies:
       lru-cache "^6.0.0"
   
