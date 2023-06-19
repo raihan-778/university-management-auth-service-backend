@@ -4,7 +4,7 @@ import httpStatus from 'http-status';
 import globalErrorHandler from './app/middleware/globalErrorHandler';
 
 import { UserRoutes } from './app/modules/user/user.router';
-import { generateStudentId } from './app/modules/user/user.utils';
+// import { generateStudentId } from './app/modules/user/user.utils';
 import routes from './app/routes';
 
 const app: Application = express();
@@ -31,12 +31,12 @@ app.get('/', async (req: Request, res: Response, next: NextFunction) => {
   // next('Ore baba Error')
   next();
 });
-const academicSemester = {
-  code: '01',
-  year: '2025',
-};
-const testId = generateStudentId(academicSemester);
-console.log(testId);
+// const academicSemester = {
+//   code: '01',
+//   year: '2025',
+// };
+// const testId = generateStudentId(academicSemester);
+// console.log(testId);
 //global error handler
 app.use(globalErrorHandler);
 
