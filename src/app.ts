@@ -4,6 +4,8 @@ import httpStatus from 'http-status';
 import globalErrorHandler from './app/middleware/globalErrorHandler';
 
 import { UserRoutes } from './app/modules/user/user.router';
+
+import { generateFacultyId } from './app/modules/user/user.utils';
 import routes from './app/routes';
 
 const app: Application = express();
@@ -44,6 +46,12 @@ app.use((req, res, next) => {
   next();
 });
 
+const academicFaculty = {
+  title: 'Faculty',
+};
+
+const testId = generateFacultyId(academicFaculty);
+console.log(testId);
 // console.log(process.env)
 
 export default app;

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-console */
-import { ErrorRequestHandler, Request, Response } from 'express';
+import { ErrorRequestHandler } from 'express';
 import { ZodError } from 'zod';
 import config from '../../config';
 import ApiError from '../../errors/ApiError';
@@ -11,11 +11,10 @@ import { IGenericErrorMessage } from '../../interfaces/error';
 import { errorLogger } from '../../shared/logger';
 
 const globalErrorHandler: ErrorRequestHandler = (
-  // if any request handler has first parameter as err it will be a global error handeler of express, which can from ErrorRequestHandler
+  // if any request handler has first parameter as err it will be a global error handeler of express, which can defined "ErrorRequestHandler" as type.After making our globelErrorHandle as "ErrorRequestHandler" we do not need to set req:Request, res:Respons etc from express. If we use this, then we may not get our error from globalErrorHandler pattern.
   error,
-  req: Request,
-  res: Response
-  // next: NextFunction
+  req,
+  res
 ) => {
   config.env === 'development' && error
     ? console.log(`🚀global error handler~~`, { error })
@@ -70,6 +69,6 @@ const globalErrorHandler: ErrorRequestHandler = (
     stack: config.env !== 'production' ? error?.stack : undefined,
   });
 
-  // next(); here we dot not need to use next() function because after getting response we do not need to call any middleware
+  // next(); //here we dot not need to use next() function because after getting response we do not need to call any middleware
 };
 export default globalErrorHandler;

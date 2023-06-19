@@ -5,9 +5,9 @@ import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponse';
 import { UserService } from './user.service';
 
-const createUserToDB: RequestHandler = catchAsync(
+const createUser: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
-    const { user } = req.body;
+    const { ...user } = req.body;
     const result = await UserService.createUser(user);
 
     sendResponse(res, {
@@ -20,4 +20,4 @@ const createUserToDB: RequestHandler = catchAsync(
   }
 );
 
-export const UserController = { createUserToDB };
+export const UserController = { createUser };
