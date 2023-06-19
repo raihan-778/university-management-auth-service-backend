@@ -1,9 +1,0 @@
- Mon Jun 12 2023 11:17:47 [PH!] error: Global error handler Cast to ObjectId failed for value "create-semester" (type string) at path "_id" for model "AcademicSemester" 
- Mon Jun 12 2023 11:18:29 [PH!] error: Global error handler Cast to ObjectId failed for value "create-semester" (type string) at path "_id" for model "AcademicSemester" 
- Mon Jun 12 2023 11:26:25 [PH!] error: Global error handler Cast to ObjectId failed for value "get-all-semesters" (type string) at path "_id" for model "AcademicSemester" 
- Mon Jun 12 2023 11:32:1 [PH!] error: Global error handler Academic semester is already exists! 
- Mon Jun 12 2023 11:34:14 [PH!] error: Global error handler Cast to ObjectId failed for value "get-all-semesters" (type string) at path "_id" for model "AcademicSemester" 
- Mon Jun 12 2023 11:43:11 [PH!] error: Global error handler Cast to ObjectId failed for value "get-all-semesters" (type string) at path "_id" for model "AcademicSemester" 
- Mon Jun 12 2023 11:43:39 [PH!] error: Global error handler Cast to ObjectId failed for value "get-all-semesters" (type string) at path "_id" for model "AcademicSemester" 
- Mon Jun 12 2023 11:55:5 [PH!] error: Global error handler Cast to ObjectId failed for value "get-all-semesters" (type string) at path "_id" for model "AcademicSemester" 
- Mon Jun 12 2023 11:57:48 [PH!] error: Global error handler Cast to ObjectId failed for value "get-all-semesters" (type string) at path "_id" for model "AcademicSemester" 
