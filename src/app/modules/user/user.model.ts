@@ -16,6 +16,10 @@ const userSchema = new Schema<IUser, UserModel>(
       type: String,
       required: true,
     },
+    student: {
+      type: Schema.Types.ObjectId,
+      required: true,
+    },
   },
   {
     timestamps: true,
