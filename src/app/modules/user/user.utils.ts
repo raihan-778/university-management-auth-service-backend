@@ -36,7 +36,7 @@ const findLastFacultyId = async () => {
   )
     .sort({ createdAt: -1 })
     .lean();
-  return lastFaculty?.id;
+  return lastFaculty?.id ? lastFaculty.id.substring(2) : undefined;
 };
 
 export const generateFacultyId = async () => {
@@ -48,6 +48,6 @@ export const generateFacultyId = async () => {
     .padStart(5, '0');
 
   incrementedFacultyId = `F-${incrementedFacultyId}`;
-  // return incrementedFacultyId;
-  console.log(incrementedFacultyId);
+  return incrementedFacultyId;
+  // console.log(incrementedFacultyId);
 };

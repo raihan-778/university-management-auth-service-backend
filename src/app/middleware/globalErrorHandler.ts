@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-console */
-import { ErrorRequestHandler } from 'express';
+
 import { ZodError } from 'zod';
 import config from '../../config';
 import ApiError from '../../errors/ApiError';
@@ -9,6 +9,7 @@ import handleValidationError from '../../errors/handleValidationError';
 import handleZodError from '../../errors/handleZodError';
 import { IGenericErrorMessage } from '../../interfaces/error';
 import { errorLogger } from '../../shared/logger';
+import { ErrorRequestHandler } from 'express';
 
 const globalErrorHandler: ErrorRequestHandler = (
   // if any request handler has first parameter as err it will be a global error handeler of express, which can defined "ErrorRequestHandler" as type.After making our globelErrorHandle as "ErrorRequestHandler" we do not need to set req:Request, res:Respons etc from express. If we use this, then we may not get our error from globalErrorHandler pattern.
