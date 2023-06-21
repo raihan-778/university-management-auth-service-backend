@@ -1,4 +1,5 @@
 import config from '../../../config';
+import { AcademicSemester } from '../academicSemester/academicSemester.model';
 import { IStudent } from '../student/student.interface';
 import { Student } from '../student/student.model';
 import { IUser } from './user.interface';
@@ -12,8 +13,12 @@ const createStudent = async (
     user.password = config.default_student_pass as string;
   }
 
-  const createStudent = await Student.create(student);
   // set role
+  user.role = 'student';
+
+  const academicSemester = AcademicSemester.findById(student.academicSemester);
+  //generate student id
+  const createStudent = await Student.create(student);
 
   return createStudent;
 };
