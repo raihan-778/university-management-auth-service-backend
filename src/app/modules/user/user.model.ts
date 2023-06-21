@@ -16,21 +16,20 @@ const userSchema = new Schema<IUser, UserModel>(
       type: String,
       required: true,
     },
-    Student: {
+    student: {
       type: Schema.Types.ObjectId,
-      required: true,
       ref: 'Student',
     },
-    Faculty: {
-      type: Schema.Types.ObjectId,
-      required: true,
-      ref: 'Faculty',
-    },
-    Admin: {
-      type: Schema.Types.ObjectId,
-      required: true,
-      ref: 'Admin',
-    },
+    // Faculty: {
+    //   type: Schema.Types.ObjectId,
+    //   required: true,
+    //   ref: 'Faculty',
+    // },
+    // Admin: {
+    //   type: Schema.Types.ObjectId,
+    //   required: true,
+    //   ref: 'Admin',
+    // },
   },
   {
     timestamps: true,
