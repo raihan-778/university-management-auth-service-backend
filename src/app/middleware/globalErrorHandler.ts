@@ -15,7 +15,8 @@ const globalErrorHandler: ErrorRequestHandler = (
   // if any request handler has first parameter as err it will be a global error handeler of express, which can defined "ErrorRequestHandler" as type.After making our globelErrorHandle as "ErrorRequestHandler" we do not need to set req:Request, res:Respons etc from express. If we use this, then we may not get our error from globalErrorHandler pattern.
   error,
   req,
-  res
+  res,
+  next
 ) => {
   config.env === 'development' && error
     ? console.log(`🚀global error handler~~`, { error })
@@ -70,6 +71,7 @@ const globalErrorHandler: ErrorRequestHandler = (
     stack: config.env !== 'production' ? error?.stack : undefined,
   });
 
-  // next(); //here we dot not need to use next() function because after getting response we do not need to call any middleware
+  next();
+   //here we dot not need to use next() function because after getting response we do not need to call any middleware
 };
 export default globalErrorHandler;
