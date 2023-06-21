@@ -19,8 +19,6 @@ const createStudent: RequestHandler = catchAsync(
     });
   }
 );
-    // next(); here we dot not need to use next() function because after getting response we do not need to call any middleware
-  }
-);
+// next(); here we dot not need to use next() function because after getting response we do not need to call any middleware
 
-export const UserController = { createUser };
+export const UserController = { createStudent };
