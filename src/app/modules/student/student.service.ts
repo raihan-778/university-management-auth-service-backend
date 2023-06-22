@@ -1,13 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { SortOrder } from 'mongoose';
 
+import httpStatus from 'http-status';
+import ApiError from '../../../errors/ApiError';
 import { paginationHelper } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import { StudentFilterableFields } from './student.constant';
 import { IStudent, IStudentFilters } from './student.interface';
 import { Student } from './student.model';
-import ApiError from '../../../errors/ApiError';
-import httpStatus from 'http-status';
 
 const getAllStudents = async (
   filters: IStudentFilters,
@@ -111,14 +112,63 @@ const updateStudent = async (
   id: string,
   payload: Partial<IStudent>
 ): Promise<IStudent | null> => {
-  const isExist = await Student.findOne(id);
+  const isExist = await Student.findOne({ id });
 
   if (!isExist) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Student data not found');
   }
-  const result = await Student.findOneAndUpdate({ _id: id }, payload, {
-    new: true, //here {new:true} is used to see the instant update document in response.If we do not use this our data will be updated but we can not see it instantly without refresh
-  }); //here we avoid using updateOne may not use modelschema "save" validation middleware and bypass it .So that we have to use findOneAndUpdate.
+  const { name, guardian, localGuardian, ...studentData } = payload; //here using {name, guardian, localGuardian, ...studentData} we have seperated the name ,guardian & localGuardian from payload. and other data will be saved in studentData.
+
+  const updatedStudentData: Partial<IStudent> = { ...studentData };
+  /* const name={
+    firstName:"Raihan"<---for update this field
+    middleName:"Uddin"
+    lastName:"Arif"
+} 
+
+*/
+
+  //dynamically handeling
+
+  // handle name object
+  if (name && Object.keys(name).length > 0) {
+    Object.keys(name).forEach(key => {
+      const nameKey = `name.${key}`; // name.firstName
+
+      (updatedStudentData as any)[nameKey] = name[key as keyof typeof name];
+    });
+  }
+
+  //handle guardian object
+  if (guardian && Object.keys(guardian).length > 0) {
+    Object.keys(guardian).forEach(key => {
+      const guardianKey = `guardian.${key}`; // guardian.motherContactNo
+
+      (updatedStudentData as any)[guardianKey] =
+        guardian[key as keyof typeof guardian];
+    });
+  }
+
+  //handle localGuradian Object
+  if (localGuardian && Object.keys(localGuardian).length > 0) {
+    Object.keys(localGuardian).forEach(key => {
+      const localGuardianKey = `localGuardian.${key}`; // localGuardian.contactNo
+
+      (updatedStudentData as any)[localGuardianKey] =
+        localGuardian[key as keyof typeof localGuardian];
+    });
+  }
+
+  // here using Object.keys(name) we have converted all name values in a array from which we can apply any array methods such as here we have applyed for forEach method.
+  /* const name={firstName:"Raihan"} */
+
+  const result = await Student.findOneAndUpdate(
+    { _id: id },
+    updatedStudentData,
+    {
+      new: true, //here {new:true} is used to see the instant update document in response.If we do not use this our data will be updated but we can not see it instantly without refresh
+    }
+  ); //here we avoid using updateOne may not use modelschema "save" validation middleware and bypass it .So that we have to use findOneAndUpdate.
   return result;
 };
 

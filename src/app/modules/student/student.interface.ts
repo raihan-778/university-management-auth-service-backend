@@ -24,7 +24,7 @@ export type ILocalGuardian = {
 
 export type IStudent = {
   id: string;
-  name: IStudentName;
+  name: IStudentName; //embaded object
   gender: string;
   email: string;
   dateOfBirth: string;
@@ -33,12 +33,12 @@ export type IStudent = {
   contactNo: string;
   emergencyContactNo: string;
   bloodGroup: string;
-  guardian: IGuardian;
-  localGuardian: ILocalGuardian;
+  guardian: IGuardian; //embaded object
+  localGuardian: ILocalGuardian; //embaded object
   profileImage?: string;
-  academicFaculty: Types.ObjectId;
-  academicDepartment: Types.ObjectId;
-  academicSemester: Types.ObjectId;
+  academicFaculty: Types.ObjectId; //reference field
+  academicDepartment: Types.ObjectId; //reference field
+  academicSemester: Types.ObjectId; //reference field
 };
 
 export type IStudentFilters = {
