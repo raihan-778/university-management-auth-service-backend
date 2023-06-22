@@ -73,7 +73,7 @@ const createStudent = async (
           path: 'academicDepartment',
         },
         {
-          path: 'academecFaculty',
+          path: 'academicFaculty',
         },
       ],
     });
