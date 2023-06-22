@@ -19,20 +19,24 @@ const updateStudentZodSchema = z.object({
     permanentAddress: z.string().optional(),
     contactNo: z.string().optional(),
     emergencyContactNo: z.string().optional(),
-    guardian: z.object({
-      fatherName: z.string().optional(),
-      fatherOccupation: z.string().optional(),
-      fatherContactNo: z.string().optional(),
-      motherName: z.string().optional(),
-      motherOccupation: z.string().optional(),
-      address: z.string().optional(),
-    }),
-    localGuardian: z.object({
-      name: z.string().optional(),
-      occupation: z.string().optional(),
-      contactNo: z.string().optional(),
-      address: z.string().optional(),
-    }),
+    guardian: z
+      .object({
+        fatherName: z.string().optional(),
+        fatherOccupation: z.string().optional(),
+        fatherContactNo: z.string().optional(),
+        motherName: z.string().optional(),
+        motherOccupation: z.string().optional(),
+        address: z.string().optional(),
+      })
+      .optional(),
+    localGuardian: z
+      .object({
+        name: z.string().optional(),
+        occupation: z.string().optional(),
+        contactNo: z.string().optional(),
+        address: z.string().optional(),
+      })
+      .optional(),
     profileImage: z.string().optional(),
     academicFaculty: z.string().optional(),
     academicSemester: z.string().optional(),

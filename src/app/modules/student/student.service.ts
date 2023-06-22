@@ -75,9 +75,9 @@ const getAllStudents = async (
   const whereCondition =
     andConditions.length > 0 ? { $and: andConditions } : {}; // this code block is used to create conditions if any searching options is not found then an empty object will be added in query paramas.
   const result = await Student.find(whereCondition)
-    .populate('AcademicSemester')
-    .populate('AcademicDepartment')
-    .populate('AcademicFaculty')
+    // .populate('AcademicSemester')
+    // .populate('AcademicDepartment')
+    // .populate('AcademicFaculty')
     .sort(sortCondition)
     .skip(skip)
     .limit(limit);
@@ -162,13 +162,9 @@ const updateStudent = async (
   // here using Object.keys(name) we have converted all name values in a array from which we can apply any array methods such as here we have applyed for forEach method.
   /* const name={firstName:"Raihan"} */
 
-  const result = await Student.findOneAndUpdate(
-    { _id: id },
-    updatedStudentData,
-    {
-      new: true, //here {new:true} is used to see the instant update document in response.If we do not use this our data will be updated but we can not see it instantly without refresh
-    }
-  ); //here we avoid using updateOne may not use modelschema "save" validation middleware and bypass it .So that we have to use findOneAndUpdate.
+  const result = await Student.findOneAndUpdate({ id }, updatedStudentData, {
+    new: true, //here {new:true} is used to see the instant update document in response.If we do not use this our data will be updated but we can not see it instantly without refresh
+  }); //here we avoid using updateOne may not use modelschema "save" validation middleware and bypass it .So that we have to use findOneAndUpdate.
   return result;
 };
 
