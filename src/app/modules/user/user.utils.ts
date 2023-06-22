@@ -48,6 +48,6 @@ export const generateFacultyId = async () => {
     .padStart(5, '0');
 
   incrementedFacultyId = `F-${incrementedFacultyId}`;
-  // return incrementedFacultyId;
-  console.log(incrementedFacultyId);
+  return incrementedFacultyId;
+  // console.log(incrementedFacultyId);
 };
