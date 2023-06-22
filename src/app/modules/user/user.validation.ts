@@ -21,78 +21,79 @@ const createUserZodSchema = z.object({
           required_error: 'First Name is required',
         }),
       }),
-    }),
-    dateOfBirth: z.string({
-      required_error: 'Date of Birth is required',
-    }),
-    email: z
-      .string({
-        required_error: 'Email is required',
-      })
-      .email(),
-    gender: z.enum([...gender] as [string, ...string[]], {
-      required_error: 'gender is required',
-    }),
-    bloodGroup: z.enum([...bloodGroup] as [string, ...string[]], {
-      required_error: 'Blood Group is required',
-    }),
-    presentAddress: z.string({
-      required_error: 'presentAddress is required',
-    }),
-    permanentAddress: z.string({
-      required_error: 'Parmanent Address is Required',
-    }),
-    contactNo: z.string({ required_error: 'Contact No is Required' }),
-    emergencyContactNo: z.string({
-      required_error: 'Emergency Contact No is Required',
-    }),
-    guardian: z.object({
-      fatherName: z.string({
-        required_error: 'fatherName is required',
+      dateOfBirth: z.string({
+        required_error: 'Date of Birth is required',
       }),
-      fatherOccupation: z.string({
-        required_error: 'fatherOccupation is required',
+      email: z
+        .string({
+          required_error: 'Email is required',
+        })
+        .email(),
+
+      gender: z.enum([...gender] as [string, ...string[]], {
+        required_error: 'gender is required',
       }),
-      fatherContactNo: z.string({
-        required_error: 'fatherContactNo is required',
+      bloodGroup: z.enum([...bloodGroup] as [string, ...string[]], {
+        required_error: 'Blood Group is required',
       }),
-      motherName: z.string({
-        required_error: 'motherName is required',
+      presentAddress: z.string({
+        required_error: 'presentAddress is required',
       }),
-      motherOccupation: z.string({
-        required_error: 'motherOccupation is required',
+      permanentAddress: z.string({
+        required_error: 'Parmanent Address is Required',
       }),
-      address: z.string({
-        required_error: 'address is required',
+      contactNo: z.string({ required_error: 'Contact No is Required' }),
+      emergencyContactNo: z.string({
+        required_error: 'Emergency Contact No is Required',
       }),
-    }),
-    localGuardian: z.object({
-      name: z.string({
-        required_error: 'name is required',
+      guardian: z.object({
+        fatherName: z.string({
+          required_error: 'fatherName is required',
+        }),
+        fatherOccupation: z.string({
+          required_error: 'fatherOccupation is required',
+        }),
+        fatherContactNo: z.string({
+          required_error: 'fatherContactNo is required',
+        }),
+        motherName: z.string({
+          required_error: 'motherName is required',
+        }),
+        motherOccupation: z.string({
+          required_error: 'motherOccupation is required',
+        }),
+        address: z.string({
+          required_error: 'address is required',
+        }),
       }),
-      occupation: z.string({
-        required_error: 'occupation is required',
+      localGuardian: z.object({
+        name: z.string({
+          required_error: 'name is required',
+        }),
+        occupation: z.string({
+          required_error: 'occupation is required',
+        }),
+        contactNo: z.string({
+          required_error: 'contactNo is required',
+        }),
+        address: z.string({
+          required_error: 'address is required',
+        }),
       }),
-      contactNo: z.string({
-        required_error: 'contactNo is required',
+      profileImage: z
+        .string({
+          required_error: 'profileImage is required',
+        })
+        .optional(),
+      academicFaculty: z.string({
+        required_error: 'academicFaculty is required',
       }),
-      address: z.string({
-        required_error: 'address is required',
+      academicSemester: z.string({
+        required_error: 'academicSemester is required',
       }),
-    }),
-    profileImage: z
-      .string({
-        required_error: 'profileImage is required',
-      })
-      .optional(),
-    academicFaculty: z.string({
-      required_error: 'academicFaculty is required',
-    }),
-    academicSemester: z.string({
-      required_error: 'academicSemester is required',
-    }),
-    academicDepartment: z.string({
-      required_error: 'academicDepartment is required',
+      academicDepartment: z.string({
+        required_error: 'academicDepartment is required',
+      }),
     }),
   }),
 });

@@ -3,7 +3,7 @@ import { IAcademicSemester } from '../academicSemester/academicSemester.interfac
 import { User } from './user.model';
 
 export const findLastStudentId = async () => {
-  const lastStudent = await User.findOne({ role: 'Student' }, { id: 1, _id: 0 })
+  const lastStudent = await User.findOne({ role: 'student' }, { id: 1, _id: 0 })
     .sort({
       createdAt: -1,
     })

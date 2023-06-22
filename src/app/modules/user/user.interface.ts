@@ -1,5 +1,4 @@
 import { Model, Types } from 'mongoose';
-
 import { IStudent } from '../student/student.interface';
 
 export type IUser = {
