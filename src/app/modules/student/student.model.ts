@@ -78,8 +78,8 @@ export const StudentSchema = new Schema<IStudent, StudentModel>(
       required: true,
       enum: ['male', 'female'],
     },
-    email:{
-      type:String,
+    email: {
+      type: String,
       required: true,
     },
     dateOfBirth: {
