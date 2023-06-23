@@ -11,6 +11,7 @@ export default {
   default_user_pass: process.env.DEFAULT_USER_PASS,
   default_student_pass: process.env.DEFAULT_STUDENT_PASS,
   env: process.env.NODE_ENV,
+  bcrypt_salt_round: process.env.BCRYPT_SALT_ROUND,
 };
 
 /* passof university-admin-DB: 1UNBXS2q39eXnUcr*/
