@@ -1,11 +1,12 @@
 import express from 'express';
 import validateRequest from '../../middleware/validateRequest';
+import { FacultyController } from './Faculty.controller';
 import { FacultyValidation } from './faculty.validation';
 
 const router = express.Router();
 
 router.get('/:id', FacultyController.getAllFaculty);
-router.delete('/:id', FacultyController.deleteAllFaculty);
+router.delete('/:id', FacultyController.deleteFaculty);
 router.get('/', FacultyController.getSingleFaculty);
 
 router.patch(
@@ -17,4 +18,4 @@ router.patch(
 
 //create admin
 
-export const StudentRoutes = router;
+export const FacultyRoutes = router;
