@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { IStudent, StudentModel } from './student.interface';
+import { FacultyModel, IFaculty } from './faculty.interface';
 
 const NameSchema = new Schema({
   firstName: {
@@ -15,7 +15,7 @@ const NameSchema = new Schema({
   },
 });
 
-export const StudentSchema = new Schema<IStudent, StudentModel>(
+export const StudentSchema = new Schema<IFaculty, FacultyModel>(
   {
     id: {
       type: String,
@@ -83,4 +83,4 @@ export const StudentSchema = new Schema<IStudent, StudentModel>(
   }
 );
 
-export const Student = model<IStudent, StudentModel>('Student', StudentSchema);
+export const Faculty = model<IFaculty, FacultyModel>('Student', StudentSchema);

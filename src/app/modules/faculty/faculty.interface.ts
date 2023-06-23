@@ -33,4 +33,3 @@ export type IFacultyFilters = {
 };
 
 export type FacultyModel = Model<IFaculty, Record<string, unknown>>;
-
