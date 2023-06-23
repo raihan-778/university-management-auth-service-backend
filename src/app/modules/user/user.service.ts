@@ -10,6 +10,8 @@ import { Student } from '../student/student.model';
 import { IUser } from './user.interface';
 import { User } from './user.model';
 import { generateFacultyId, generateStudentId } from './user.utils';
+import { Faculty } from '../faculty/faculty.model';
+import { IFaculty } from '../faculty/faculty.interface';
 
 const createStudent = async (
   student: IStudent,
@@ -85,6 +87,7 @@ const createStudent = async (
   }
   return newUserAllData;
 };
+//create faculty function start
 const createFaculty = async (
   faculty: IFaculty,
   user: IUser
@@ -101,11 +104,11 @@ const createFaculty = async (
   // set role
   user.role = 'faculty';
 
-  const academicSemester = await AcademicSemester.findById(
-    student.academicSemester
-  );
+  // const academicSemester = await AcademicSemester.findById(
+  //   student.academicSemester
+  // );
 
-  //generate student id
+  //generate faculty id
 
   let newUserAllData = null;
   const session = await mongoose.startSession();
@@ -117,11 +120,11 @@ const createFaculty = async (
     faculty.id = id;
     const newFaculty = await Faculty.create([faculty], { session }); //here we use "[]" sign insted of "{}" or student because here we are executing a transection & fall back function.
     if (!newFaculty.length) {
-      throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to create student');
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to create faculty');
     }
 
     //here set studetn _id into user.student
-    user.student = newFaculty[0]._id;
+    user.faculty = newFaculty[0]._id;
 
     const newUser = await User.create([user], { session });
 
@@ -139,15 +142,12 @@ const createFaculty = async (
     throw err;
   }
 
-  //user has reference of Student
-  //student has reference of "academicDepartment", "academemicFaculty", "academicSemester"
+  //user has reference of Faculty
+  //Faculty has reference of "academicDepartment", "academemicFaculty"
   if (newUserAllData) {
     newUserAllData = await User.findOne({ id: newUserAllData.id }).populate({
-      path: 'student',
+      path: 'faculty',
       populate: [
-        {
-          path: 'academicSemester',
-        },
         {
           path: 'academicDepartment',
         },
@@ -161,4 +161,5 @@ const createFaculty = async (
 };
 export const UserService = {
   createStudent,
+  createFaculty,
 };

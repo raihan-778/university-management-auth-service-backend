@@ -4,65 +4,64 @@ import { paginationFields } from '../../../constantFields/paginationConstants';
 import catchAsync from '../../../shared/catchAsync';
 import pick from '../../../shared/pick';
 import sendResponse from '../../../shared/sendResponse';
-import { academicFacultyFilterableFields } from '../academicFaculty/academicFaculty.constant';
+import { FacultyFilterableFields } from './faculty.constant';
+import { FacultyService } from './faculty.service';
+import { IFaculty } from './faculty.interface';
 
 const getAllFaculty = catchAsync(async (req: Request, res: Response) => {
-  const filters = pick(req.query, academicFacultyFilterableFields);
+  const filters = pick(req.query, FacultyFilterableFields);
   const paginationOptions = pick(req.query, paginationFields);
 
-  const result = await StudentService.getAllStudents(
-    filters,
-    paginationOptions
-  );
-  sendResponse<IStudent[]>(res, {
+  const result = await FacultyService.getAllFaculty(filters, paginationOptions);
+  sendResponse<IFaculty[]>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Students data Retrived Successfully',
+    message: 'Faculty data Retrived Successfully',
     meta: result.meta,
     data: result.data,
   });
   // next(); here we dot not need to use next() function because after getting response we do not need to call any middleware
 });
-const getSingleStudent = catchAsync(async (req: Request, res: Response) => {
+const getSingleFaculty = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
-  const result = await StudentService.getSingleStudent(id);
+  const result = await FacultyService.getSingleFaculty(id);
 
-  sendResponse<IStudent | null>(res, {
+  sendResponse<IFaculty | null>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Single Student Retrived Successfully',
+    message: 'Single Faculty Retrived Successfully',
     data: result,
   });
   // next(); here we dot not need to use next() function because after getting response we do not need to call any middleware
 });
 
-const updateStudent = catchAsync(async (req: Request, res: Response) => {
+const updateFaculty = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
   const updatedData = req.body;
-  const result = await StudentService.updateStudent(id, updatedData);
+  const result = await FacultyService.updateFaculty(id, updatedData);
 
-  sendResponse<IStudent | null>(res, {
+  sendResponse<IFaculty | null>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Single Student Updated Successfully',
+    message: 'Single Faculty Updated Successfully',
     data: result,
   });
   // next(); here we dot not need to use next() function because after getting response we do not need to call any middleware
 });
-const deleteStudent = catchAsync(async (req: Request, res: Response) => {
+const deleteFaculty = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
-  const result = await StudentService.deleteStudent(id);
-  sendResponse<IStudent | null>(res, {
+  const result = await FacultyService.deleteFaculty(id);
+  sendResponse<IFaculty | null>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Single Student deleted Successfully',
+    message: 'Single Faculty deleted Successfully',
     data: result,
   });
   // next(); here we dot not need to use next() function because after getting response we do not need to call any middleware
 });
-export const StudentController = {
-  getAllStudents,
-  getSingleStudent,
-  updateStudent,
-  deleteStudent,
+export const FacultyController = {
+  getAllFaculty,
+  getSingleFaculty,
+  updateFaculty,
+  deleteFaculty,
 };

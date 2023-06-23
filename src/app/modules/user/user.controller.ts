@@ -3,8 +3,8 @@ import { Request, RequestHandler, Response } from 'express';
 import httpStatus from 'http-status';
 import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponse';
-import { UserService } from './user.service';
 import { IUser } from './user.interface';
+import { UserService } from './user.service';
 
 const createStudent: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
@@ -34,4 +34,4 @@ const createFaculty: RequestHandler = catchAsync(
 );
 // next(); here we dot not need to use next() function because after getting response we do not need to call any middleware
 
-export const UserController = { createStudent };
+export const UserController = { createStudent, createFaculty };

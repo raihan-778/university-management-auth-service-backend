@@ -15,7 +15,7 @@ const NameSchema = new Schema({
   },
 });
 
-export const StudentSchema = new Schema<IFaculty, FacultyModel>(
+export const FacultySchema = new Schema<IFaculty, FacultyModel>(
   {
     id: {
       type: String,
@@ -83,4 +83,4 @@ export const StudentSchema = new Schema<IFaculty, FacultyModel>(
   }
 );
 
-export const Faculty = model<IFaculty, FacultyModel>('Student', StudentSchema);
+export const Faculty = model<IFaculty, FacultyModel>('Faculty', FacultySchema);

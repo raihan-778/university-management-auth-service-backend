@@ -1,9 +1,11 @@
 import { z } from 'zod';
-import { bloodGroup, gender } from '../student/student.constant';
+import { bloodGroup, gender } from '../faculty/faculty.constant';
 
 //req-validation
 //body--> object
 //data--> object
+
+//zod schema for student
 const createUserZodSchema = z.object({
   body: z.object({
     password: z.string().optional(),
@@ -98,6 +100,63 @@ const createUserZodSchema = z.object({
   }),
 });
 
+//zod schema for faculty
+const createFacultyZodSchema = z.object({
+  body: z.object({
+    password: z.string().optional(),
+    faculty: z.object({
+      name: z.object({
+        firstName: z.string({
+          required_error: 'First Name is required',
+        }),
+        middleName: z.string().optional(),
+        lastName: z.string({
+          required_error: 'Last Name is required',
+        }),
+      }),
+      dateOfBirth: z.string({
+        required_error: 'Date of Birth is required',
+      }),
+      email: z
+        .string({
+          required_error: 'Email is required',
+        })
+        .email(),
+      gender: z.enum([...gender] as [string, ...string[]], {
+        required_error: 'gender is required',
+      }),
+      bloodGroup: z.enum([...bloodGroup] as [string, ...string[]], {
+        required_error: 'Blood Group is required',
+      }),
+      presentAddress: z.string({
+        required_error: 'presentAddress is required',
+      }),
+      permanentAddress: z.string({
+        required_error: 'Parmanent Address is Required',
+      }),
+      contactNo: z.string({ required_error: 'Contact No is Required' }),
+      emergencyContactNo: z.string({
+        required_error: 'Emergency Contact No is Required',
+      }),
+      designation: z.string({
+        required_error: 'Designation is required',
+      }),
+      profileImage: z
+        .string({
+          required_error: 'profileImage is required',
+        })
+        .optional(),
+      academicFaculty: z.string({
+        required_error: 'academicFaculty is required',
+      }),
+      academicDepartment: z.string({
+        required_error: 'academicDepartment is required',
+      }),
+    }),
+  }),
+});
+
 export const UserValidation = {
   createUserZodSchema,
+  createFacultyZodSchema,
 };
