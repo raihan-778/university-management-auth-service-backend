@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+// import bcrypt from 'bcrypt';
 import httpStatus from 'http-status';
 import mongoose from 'mongoose';
 import config from '../../../config';
@@ -22,10 +22,11 @@ const createStudent = async (
     user.password = config.default_student_pass as string;
   }
   //hash password for security
-  user.password = await bcrypt.hash(
-    user.password,
-    Number(config.bcrypt_salt_round)
-  );
+  // user.password = await bcrypt.hash(
+  //   user.password,
+  //   Number(config.bcrypt_salt_round)
+  // ); //--> this hashing method is globally handaled from user.model
+
   // set role
   user.role = 'student';
 
@@ -97,16 +98,14 @@ const createFaculty = async (
     user.password = config.default_faculty_pass as string;
   }
   //hash password for security
-  user.password = await bcrypt.hash(
+
+  /*  user.password = await bcrypt.hash(
     user.password,
     Number(config.bcrypt_salt_round)
-  );
+  ); */ //--> this hashing method is globally handaled from user.model
+
   // set role
   user.role = 'faculty';
-
-  // const academicSemester = await AcademicSemester.findById(
-  //   student.academicSemester
-  // );
 
   //generate faculty id
 

@@ -1,4 +1,7 @@
+/* eslint-disable @typescript-eslint/no-this-alias */
+import bcrypt from 'bcrypt';
 import { Schema, model } from 'mongoose';
+import config from '../../../config';
 import { IUser, UserModel } from './user.interface';
 
 const userSchema = new Schema<IUser, UserModel>(
@@ -15,6 +18,11 @@ const userSchema = new Schema<IUser, UserModel>(
     password: {
       type: String,
       required: true,
+      select: 0, // by using select:0, we are stoping deliver password option to frontend.
+    },
+    needPasswordChange: {
+      type: Boolean,
+      default: true,
     },
     student: {
       type: Schema.Types.ObjectId,
@@ -37,5 +45,22 @@ const userSchema = new Schema<IUser, UserModel>(
     },
   }
 );
+
+//user.create /user.save// these are pre-hookporvided by mongoose which will help us to do something before saving data to database.It will work only at the time of save to database.
+
+//User.create // user.save
+
+userSchema.pre('save', async function (next) {
+  //hashing user password
+
+  const user = this;
+
+  user.password = await bcrypt.hash(
+    user.password,
+
+    Number(config.bcrypt_salt_round)
+  );
+  next();
+});
 
 export const User = model<IUser, UserModel>('User', userSchema);

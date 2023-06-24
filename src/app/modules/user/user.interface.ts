@@ -8,6 +8,7 @@ export type IUser = {
   password: string;
   student?: Types.ObjectId | IStudent;
   faculty?: Types.ObjectId | IFaculty;
+  needPasswordChange: false | true;
   // admin?: Types.ObjectId | IAdmin;---build in feature
 };
 
