@@ -2,9 +2,9 @@
 import bcrypt from 'bcrypt';
 import { Schema, model } from 'mongoose';
 import config from '../../../config';
-import { IUser, UserModel } from './user.interface';
+import { IUser, IUserMethods, UserModel } from './user.interface';
 
-const userSchema = new Schema<IUser, UserModel>(
+const userSchema = new Schema<IUser, Record<string, never>, IUserMethods>(
   {
     id: {
       type: String,
@@ -46,10 +46,29 @@ const userSchema = new Schema<IUser, UserModel>(
   }
 );
 
+//isUserExist instance method
+userSchema.methods.isUserExists = async function (
+  id: string
+): Promise<Partial<IUser> | null> {
+  return await User.findOne(
+    { id },
+    { id: 1, password: 1, needPasswordChange: 1, role: 1 }
+  );
+};
+
+//isPasswordMatched instance methods
+userSchema.methods.isPasswordMatched = async function (
+  givenPassword: string,
+  currentPassword: string
+): Promise<boolean> {
+  const isMatched = await bcrypt.compare(givenPassword, currentPassword);
+
+  return isMatched;
+};
+
 //user.create /user.save// these are pre-hookporvided by mongoose which will help us to do something before saving data to database.It will work only at the time of save to database.
 
 //User.create // user.save
-
 userSchema.pre('save', async function (next) {
   //hashing user password
 
