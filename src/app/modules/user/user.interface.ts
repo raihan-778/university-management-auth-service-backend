@@ -12,4 +12,12 @@ export type IUser = {
   // admin?: Types.ObjectId | IAdmin;---build in feature
 };
 
+interface IUserMethods {
+  isUserExists(id: string): Promise<boolean>;
+  isPasswordMatched(
+    givenPassword: string,
+    currentPassword: string
+  ): Promise<boolean>;
+}
+
 export type UserModel = Model<IUser, Record<string, unknown>>;
