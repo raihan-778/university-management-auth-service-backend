@@ -14,7 +14,7 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
   sendResponse<ILoginUserResponse>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'user created successfully!',
+    message: 'user Login successfully!',
     data: result,
   });
 });
