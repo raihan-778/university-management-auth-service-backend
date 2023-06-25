@@ -1,37 +1,69 @@
 import httpStatus from 'http-status';
+import { Secret } from 'jsonwebtoken';
+import config from '../../../config';
 import ApiError from '../../../errors/ApiError';
+import { jwtHelpers } from '../../../helpers/jwtHelpers';
 import { User } from '../user/user.model';
-import { IAuth } from './auth.interface';
-import bcrypt from 'bcrypt';
+import { IAuth, ILoginUserResponse } from './auth.interface';
 
-const loginUser = async (payload: IAuth) => {
+const loginUser = async (payload: IAuth): Promise<ILoginUserResponse> => {
   const { id, password } = payload;
   //   const result = await Auth.create(payload);
   //check existence of user
+  const user = new User();
+  // const isUserExist = await User.findOne(
+  //   { id },
+  //   { id: 1, password: 1, needsPasseordChange: 1 }
+  // ).lean();
+  // if (!isUserExist) {
+  //   throw new ApiError(httpStatus.NOT_FOUND, 'User does not exist');
+  // }
 
-  const isUserExist = await User.findOne(
-    { id },
-    { id: 1, password: 1, needsPasseordChange: 1 }
-  ).lean();
+  /* This isUserExist method is moved to user model as instance method */
+
+  const isUserExist = await user.isUserExists(id);
+
   if (!isUserExist) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User does not exist');
   }
+
   //math password
+  // const isPasswordMatched = await bcrypt.compare(
+  //   password,
+  //   isUserExist?.password
+  // );
 
-  const isPasswordMatched = await bcrypt.compare(
-    password,
-    isUserExist?.password
-  );
+  /* this ispasswordMathced method is moved to user model as instance method */
 
-  if (!isPasswordMatched) {
+  if (
+    isUserExist.password &&
+    !user.isPasswordMatched(password, isUserExist.password)
+  ) {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Password do not matched');
   }
 
-  //create access token
+  //create access token & refresh token
+  const { id: userId, role, needPasswordChange } = isUserExist;
+  const accessToken = jwtHelpers.createToken(
+    { userId, role },
+    config.jwt.jwt_secret_key as Secret,
+    config.jwt.jwt_expires_in as string
+  );
+  //refresh token
 
-  return {};
+  const refreshToken = jwtHelpers.createToken(
+    { userId, role },
+    config.jwt.jwt_refresh_secret as Secret,
+    config.jwt.jwt_refresh_expires_in as string
+  );
+
+  console.log(accessToken, refreshToken, needPasswordChange);
+  return {
+    accessToken,
+    refreshToken,
+    needPasswordChange,
+  };
 };
-
 export const AuthService = {
   loginUser,
 };

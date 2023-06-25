@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import { Model, Types } from 'mongoose';
-import { IStudent } from '../student/student.interface';
 import { IFaculty } from '../faculty/faculty.interface';
+import { IStudent } from '../student/student.interface';
 
 export type IUser = {
   id: string;
@@ -12,12 +13,12 @@ export type IUser = {
   // admin?: Types.ObjectId | IAdmin;---build in feature
 };
 
-interface IUserMethods {
-  isUserExists(id: string): Promise<boolean>;
+export type IUserMethods = {
+  isUserExists(id: string): Promise<Partial<IUser> | null>;
   isPasswordMatched(
     givenPassword: string,
     currentPassword: string
   ): Promise<boolean>;
-}
+};
 
-export type UserModel = Model<IUser, Record<string, unknown>>;
+export type UserModel = Model<IUser, Record<string, unknown>, IUserMethods>;

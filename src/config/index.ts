@@ -13,6 +13,12 @@ export default {
   default_faculty_pass: process.env.DEFAULT_FACULTY_PASS,
   env: process.env.NODE_ENV,
   bcrypt_salt_round: process.env.BCRYPT_SALT_ROUND,
+  jwt: {
+    jwt_secret_key: process.env.JWT_SECRET,
+    jwt_expires_in: process.env.JWT_EXPIRES_IN,
+    jwt_refresh_secret: process.env.JWT_REFRESH_SECRET,
+    jwt_refresh_expires_in: process.env.JWT_REFRESH_EXPERES_IN,
+  },
 };
 
 /* passof university-admin-DB: 1UNBXS2q39eXnUcr*/
