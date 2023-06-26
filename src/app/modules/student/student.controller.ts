@@ -12,7 +12,10 @@ const getAllStudents = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, StudentFilterableFields);
   const paginationOptions = pick(req.query, paginationFields);
 
-  const result = await StudentService.getAllStudents(filters, paginationOptions);
+  const result = await StudentService.getAllStudents(
+    filters,
+    paginationOptions
+  );
   sendResponse<IStudent[]>(res, {
     statusCode: httpStatus.OK,
     success: true,

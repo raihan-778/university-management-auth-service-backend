@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Computer Importer\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add cookie-parser
+  C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\yarn\bin\yarn.js upgrade
 
 PATH: 
-  C:\Program Files\PowerShell\7;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python311\Scripts\;C:\Python311\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\PowerShell\7\;%NVM_HOME%;%NVM_SYMLINK%;C:\Users\Computer Importer\AppData\Local\pnpm;C:\Users\Computer Importer\AppData\Local\Microsoft\WindowsApps;C:\Users\Computer Importer\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Computer Importer\AppData\Roaming\npm;C:\Users\Computer Importer\AppData\Roaming\nvm;C:\Program Files\nodejs
+  C:\Users\Computer Importer\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Computer Importer\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python311\Scripts;C:\Python311;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\PowerShell\7;C:\Users\Computer Importer\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\Computer Importer\AppData\Local\pnpm;C:\Users\Computer Importer\AppData\Local\Microsoft\WindowsApps;C:\Users\Computer Importer\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Computer Importer\AppData\Roaming\npm;C:\Users\Computer Importer\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
 
 Yarn version: 
   1.22.19

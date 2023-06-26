@@ -100,6 +100,7 @@ const deleteStudent = async (id: string): Promise<IStudent | null> => {
     .populate('AcademicFaculty');
   return result;
 };
+
 const getSingleStudent = async (id: string): Promise<IStudent | null> => {
   const result = await Student.findById(id)
     .populate('AcademicSemester')

@@ -1,5 +1,5 @@
 import httpStatus from 'http-status';
-import { Secret } from 'jsonwebtoken';
+import jwt, { Secret } from 'jsonwebtoken';
 import config from '../../../config';
 import ApiError from '../../../errors/ApiError';
 import { jwtHelpers } from '../../../helpers/jwtHelpers';
@@ -63,6 +63,28 @@ const loginUser = async (payload: IAuth): Promise<ILoginUserResponse> => {
     needPasswordChange,
   };
 };
+const refreshToken = async (token: string) => {
+  //verify token
+  let verifiedToken = null;
+  try {
+    verifiedToken = jwt.verify(token, config.jwt.jwt_refresh_secret as Secret);
+    console.log(verifiedToken);
+  } catch (err) {
+    throw new ApiError(httpStatus.FORBIDDEN, 'Invalid refresh token');
+  }
+  const { userId, role } = verifiedToken;
+  //tumi delete hoye gecho kinto tomar refresh token ache!!
+
+  const user = new User();
+
+  const isUserExist = await user.isUserExists(userId);
+  if (!isUserExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'user does not exist');
+  }
+
+  //generate new token
+};
 export const AuthService = {
   loginUser,
+  refreshToken,
 };
