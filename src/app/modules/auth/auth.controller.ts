@@ -4,7 +4,7 @@ import httpStatus from 'http-status';
 import config from '../../../config';
 import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponse';
-import { ILoginUserResponse } from './auth.interface';
+import { ILoginUserResponse, IRefreshTokenResponse } from './auth.interface';
 import { AuthService } from './auth.service';
 
 const loginUser = catchAsync(async (req: Request, res: Response) => {
@@ -51,7 +51,7 @@ const refreshToken = catchAsync(async (req: Request, res: Response) => {
   //   if ('refreshToken' in result) {
   //     delete result.refreshToken;
   //   }
-  sendResponse<ILoginUserResponse>(res, {
+  sendResponse<IRefreshTokenResponse>(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'user Logedin successfully!',
