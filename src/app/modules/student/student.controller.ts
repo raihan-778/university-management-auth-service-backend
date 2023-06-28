@@ -4,15 +4,18 @@ import { paginationFields } from '../../../constantFields/paginationConstants';
 import catchAsync from '../../../shared/catchAsync';
 import pick from '../../../shared/pick';
 import sendResponse from '../../../shared/sendResponse';
-import { StudentService } from './student.service';
 import { StudentFilterableFields } from './student.constant';
 import { IStudent } from './student.interface';
+import { StudentService } from './student.service';
 
 const getAllStudents = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, StudentFilterableFields);
   const paginationOptions = pick(req.query, paginationFields);
 
-  const result = await StudentService.getAllStudents(filters, paginationOptions);
+  const result = await StudentService.getAllStudents(
+    filters,
+    paginationOptions
+  );
   sendResponse<IStudent[]>(res, {
     statusCode: httpStatus.OK,
     success: true,

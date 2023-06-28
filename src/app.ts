@@ -7,10 +7,12 @@ import { UserRoutes } from './app/modules/user/user.router';
 
 import { generateFacultyId } from './app/modules/user/user.utils';
 import routes from './app/routes';
+import cookieParser from 'cookie-parser';
 
 const app: Application = express();
 
 app.use(cors());
+app.use(cookieParser());
 
 //parser
 app.use(express.json());
