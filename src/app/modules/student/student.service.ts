@@ -6,10 +6,10 @@ import ApiError from '../../../errors/ApiError';
 import { paginationHelper } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
+import { User } from '../user/user.model';
 import { StudentFilterableFields } from './student.constant';
 import { IStudent, IStudentFilters } from './student.interface';
 import { Student } from './student.model';
-import { User } from '../user/user.model';
 
 const getAllStudents = async (
   filters: IStudentFilters,
@@ -76,9 +76,9 @@ const getAllStudents = async (
   const whereCondition =
     andConditions.length > 0 ? { $and: andConditions } : {}; // this code block is used to create conditions if any searching options is not found then an empty object will be added in query paramas.
   const result = await Student.find(whereCondition)
-    // .populate('AcademicSemester')
-    // .populate('AcademicDepartment')
-    // .populate('AcademicFaculty')
+    .populate('academicSemester')
+    .populate('academicDepartment')
+    .populate('academicFaculty')
     .sort(sortCondition)
     .skip(skip)
     .limit(limit);
