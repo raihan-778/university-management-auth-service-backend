@@ -9,6 +9,7 @@ import { IStudent } from './student.interface';
 import { StudentService } from './student.service';
 
 const getAllStudents = catchAsync(async (req: Request, res: Response) => {
+  console.log('student-token', req.headers.authorization);
   const filters = pick(req.query, StudentFilterableFields);
   const paginationOptions = pick(req.query, paginationFields);
 
@@ -26,6 +27,7 @@ const getAllStudents = catchAsync(async (req: Request, res: Response) => {
   // next(); here we dot not need to use next() function because after getting response we do not need to call any middleware
 });
 const getSingleStudent = catchAsync(async (req: Request, res: Response) => {
+  console.log('student-token', req.headers.authorization);
   const id = req.params.id;
   const result = await StudentService.getSingleStudent(id);
 

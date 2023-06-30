@@ -12,12 +12,12 @@ const validateAuth =
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       //get authorization token
-
       const token = req.headers.authorization;
+      console.log('access-token-for-get-route', token);
       if (!token) {
         throw new ApiError(
           httpStatus.UNAUTHORIZED,
-          'You are not authorized to'
+          'You are not authorized to access'
         );
       }
 
@@ -29,7 +29,9 @@ const validateAuth =
         token,
         config.jwt.jwt_secret_key as Secret
       );
-      req.user = verifiedUser; //role ,userId
+      console.log(verifiedUser);
+      req.user = verifiedUser; // here user is not exist in our default express database. so that we have to inject our user in the express database but must not directly modify the default database we just use a method using "index.d.ts" file in our common interface folder to include our user to express default database.then we will get //{role ,userId}
+      //role ,userId
 
       //guard by using role
 
