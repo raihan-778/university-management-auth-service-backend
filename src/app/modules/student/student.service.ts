@@ -76,7 +76,7 @@ const getAllStudents = async (
   const whereCondition =
     andConditions.length > 0 ? { $and: andConditions } : {}; // this code block is used to create conditions if any searching options is not found then an empty object will be added in query paramas.
   const result = await Student.find(whereCondition)
-    .populate('academicSemester')
+    .populate('academicSemester') //population should be named by the parameter name declared in model.
     .populate('academicDepartment')
     .populate('academicFaculty')
     .sort(sortCondition)

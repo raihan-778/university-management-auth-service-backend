@@ -13,7 +13,7 @@ const validateAuth =
     try {
       //get authorization token
       const token = req.headers.authorization; // to get the req.headers.authorization first set a token manually in post headers authorization field for testing
-      console.log('access-token-for-get-route', token);
+      // console.log('access-token-for-get-route', token);
       if (!token) {
         throw new ApiError(
           httpStatus.UNAUTHORIZED,
