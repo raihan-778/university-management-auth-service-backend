@@ -14,4 +14,9 @@ export type ILoginUserResponse = {
 export type IRefreshTokenResponse = {
   accessTokan: string;
 };
+
+export type IChangePassword = {
+  oldPassword: string;
+  newPassword: string;
+};
 export type AuthModel = Model<IAuth, Record<string, unknown>>;
