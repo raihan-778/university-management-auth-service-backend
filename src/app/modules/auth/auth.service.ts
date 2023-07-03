@@ -13,6 +13,7 @@ import {
 const loginUser = async (payload: IAuth): Promise<ILoginUserResponse> => {
   const { id, password } = payload;
   //   const result = await Auth.create(payload);
+
   //check existence of user
   const user = new User();
   // const isUserExist = await User.findOne(
@@ -67,6 +68,7 @@ const loginUser = async (payload: IAuth): Promise<ILoginUserResponse> => {
     needPasswordChange,
   };
 };
+
 const refreshToken = async (token: string): Promise<IRefreshTokenResponse> => {
   //verify token
   let verifiedToken = null;

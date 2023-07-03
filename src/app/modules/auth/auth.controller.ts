@@ -9,6 +9,7 @@ import { AuthService } from './auth.service';
 
 const loginUser = catchAsync(async (req: Request, res: Response) => {
   const { ...loginData } = req.body;
+  console.log(req.headers.authorization);
   const result = await AuthService.loginUser(loginData);
 
   const { refreshToken, ...others } = result; // by the line we have seperated the refreshToken form result and avoid to expose it in frontend.except refreshToken all properties will send to frontend buy using others parameter.
@@ -33,6 +34,7 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
     data: others,
   });
 });
+
 const refreshToken = catchAsync(async (req: Request, res: Response) => {
   const { refreshToken } = req.cookies;
   const result = await AuthService.refreshToken(refreshToken);
