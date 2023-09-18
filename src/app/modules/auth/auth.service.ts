@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt';
 import httpStatus from 'http-status';
 import { JwtPayload, Secret } from 'jsonwebtoken';
 import config from '../../../config';
@@ -111,9 +110,21 @@ const changePassword = async (
 ): Promise<void> => {
   const { oldPassword, newPassword } = payload;
   const userInfo = new User();
-  console.log('auth-serviec', user);
-  const isUserExist = await userInfo.isUserExists(user?.userId);
+
+  /* const isUserExist = await userInfo.isUserExists(user?.userId);
+
   //checking is user exist
+    if (!isUserExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User does not exist');
+  } */
+
+  //alternative way
+
+  const isUserExist = await User.findOne({ id: user?.userId }).select(
+    '+password'
+  );
+
+  console.log(isUserExist);
   if (!isUserExist) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User does not exist');
   }
@@ -121,24 +132,33 @@ const changePassword = async (
   //checking old password
 
   if (
-    isUserExist.password &&
+    isUserExist?.password &&
     !(await userInfo.isPasswordMatched(oldPassword, isUserExist.password))
   ) {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Old password is not correct');
   }
   //hash password befor saving
-  const newHashedPassword = await bcrypt.hash(
+  /* const newHashedPassword = await bcrypt.hash(
     newPassword,
     Number(config.bcrypt_salt_round)
   );
 
-  //update password
+  //update password  using update method without using pre-hook save() method
   const updatedData = {
     password: newHashedPassword,
     needPasswordChange: false,
     passwordChangedAt: new Date(),
   };
-  await User.findOneAndUpdate({ id: user?.userId }, updatedData);
+  await User.findOneAndUpdate({ id: user?.userId }, updatedData); */
+
+  //update data before using save method
+
+  isUserExist.needPasswordChange = false;
+  isUserExist.password = newPassword;
+
+  //updating password using save()method
+
+  isUserExist?.save();
 };
 export const AuthService = {
   loginUser,
