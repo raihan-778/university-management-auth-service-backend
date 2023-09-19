@@ -7,6 +7,7 @@ DATABASE_URL=mongodb+srv://wds-raihan:swUwDvZ46qma1uFB@cluster0.safuyuz.mongodb.
 DEFAULT_USER_PASS=university123.@$
 DEFAULT_STUDENT_PASS=phuStd$@&%
 DEFAULT_FACULTY_PASS=phuflt$@&%
+DEFAULT_ADMIN_PASS=admindefault$@$%
 BCRYPT_SALT_ROUND=12
 JWT_SECRET=jwtVerySecret
 JWT_EXPIRES_IN=1d

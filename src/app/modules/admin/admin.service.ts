@@ -2,7 +2,8 @@
 import httpStatus from 'http-status';
 import mongoose, { SortOrder } from 'mongoose';
 import ApiError from '../../../errors/ApiError';
-import { paginationHelpers } from '../../../helpers/paginationHelper';
+
+import { paginationHelper } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import { User } from '../user/user.model';
@@ -22,7 +23,7 @@ const getAllAdmins = async (
   // Extract searchTerm to implement search query
   const { searchTerm, ...filtersData } = filters;
   const { page, limit, skip, sortBy, sortOrder } =
-    paginationHelpers.calculatePagination(paginationOptions);
+    paginationHelper.calculatePagination(paginationOptions);
 
   const andConditions = [];
 

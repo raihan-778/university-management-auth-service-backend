@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
-import { paginationFields } from '../../../constants/pagination';
+
+import { paginationFields } from '../../../constantFields/paginationConstants';
 import catchAsync from '../../../shared/catchAsync';
 import pick from '../../../shared/pick';
 import sendResponse from '../../../shared/sendResponse';

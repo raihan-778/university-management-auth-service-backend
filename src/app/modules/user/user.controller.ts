@@ -33,6 +33,19 @@ const createFaculty: RequestHandler = catchAsync(
     });
   }
 );
+const createAdmin: RequestHandler = catchAsync(
+  async (req: Request, res: Response) => {
+    const { admin, ...userData } = req.body;
+    const result = await UserService.createAdmin(admin, userData);
+
+    sendResponse<IUser>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Admin created successfully!',
+      data: result,
+    });
+  }
+);
 // next(); here we dot not need to use next() function because after getting response we do not need to call any middleware
 
-export const UserController = { createStudent, createFaculty };
+export const UserController = { createStudent, createAdmin, createFaculty };
