@@ -188,7 +188,7 @@ const createAdmin = async (
     const newAdmin = await Admin.create([admin], { session });
 
     if (!newAdmin.length) {
-      throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to create faculty ');
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to Admin ');
     }
 
     user.admin = newAdmin[0]._id;
@@ -196,7 +196,7 @@ const createAdmin = async (
     const newUser = await User.create([user], { session });
 
     if (!newUser.length) {
-      throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to create admin');
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to create user');
     }
     newUserAllData = newUser[0];
 
@@ -209,14 +209,15 @@ const createAdmin = async (
   }
 
   if (newUserAllData) {
-    newUserAllData = await User.findOne({ id: newUserAllData.id }).populate({
-      path: 'admin',
-      populate: [
-        {
-          path: 'managementDepartment',
-        },
-      ],
-    });
+    newUserAllData = await User.findOne({ id: newUserAllData.id });
+    // .populate({
+    //   path: 'admin',
+    //   populate: [
+    //     {
+    //       path: 'managementDepartment',
+    //     },
+    //   ],
+    // });
   }
 
   return newUserAllData;
